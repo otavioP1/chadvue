@@ -5,10 +5,10 @@
 ChadVue é uma biblioteca de componentes reutilizáveis para Vue 3 e TypeScript, inspirada em princípios de ergonomia e design do Material UI, sem copiar automaticamente suas APIs.
 
 - `docs/` é a fonte de verdade da documentação técnica e funcional permanente. Consulte a [arquitetura](docs/architecture.md).
-- `tickets/` contém planejamento e acompanhamento temporário das tarefas. Consulte o [índice de acompanhamento](tickets/README.md).
+- `tickets/` contém planejamento e acompanhamento temporário local, fora do versionamento. Consulte `tickets/README.md` quando disponível; clones públicos não incluem essa pasta.
 - `README.md` apresenta o produto e direciona para a documentação técnica.
 
-Antes de implementar, consulte o ticket correspondente e a documentação técnica relevante. Em caso de conflito, explique-o e solicite confirmação, sem inventar decisões. Se não houver ticket, explicite a proposta de escopo antes de criar ou alterar o acompanhamento.
+Antes de implementar, consulte o ticket correspondente quando disponível e a documentação técnica relevante. Em caso de conflito, explique-o e solicite confirmação, sem inventar decisões. Se não houver ticket local, use a solicitação como referência de escopo e explicite qualquer proposta de ampliação antes de criar ou alterar o acompanhamento.
 
 ## Princípios técnicos
 
