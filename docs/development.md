@@ -4,7 +4,7 @@
 
 A base Vue/TypeScript e o Storybook estão configurados. A entrada pública ainda não exporta componentes de produto. O pacote é privado (`private: true`) e não está preparado para publicação pública.
 
-Ambiente executado: Windows x64, Node.js 24.22.2 e npm 11.19.1. `.nvmrc`, `packageManager` e `engines` registram essa base. A política proposta restringe o desenvolvimento a Node 24 e npm 11 a partir dessas versões; depende de revisão do mantenedor e não representa teste de todas as versões aceitas pelo intervalo.
+Ambiente executado: Windows x64, Node.js 24.22.2 e npm 11.19.1. `.nvmrc`, `packageManager` e `engines` registram essa base. A política aprovada restringe o desenvolvimento a Node 24 e npm 11 a partir dessas versões; não representa teste de todas as versões aceitas pelo intervalo.
 
 | Ferramenta | Versão fixada | Finalidade |
 | --- | --- | --- |
@@ -53,7 +53,7 @@ O comando gera `storybook-static/`. A configuração usa `@storybook/vue3-vite` 
 .storybook/           # configuração, preview e idioma do documento
 src/index.ts          # entrada pública reservada, sem componentes
 stories/              # exemplo documental Vue e story
-scripts/              # verificação de contraste da proposta de tokens
+scripts/              # verificação de contraste da definição de tokens
 vite.config.ts        # build ESM e externalização do Vue
 tsconfig.json         # verificação de fontes, stories e configurações
 tsconfig.build.json   # emissão de declarações apenas de src/

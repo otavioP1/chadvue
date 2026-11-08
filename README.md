@@ -13,7 +13,7 @@ ChadVue é uma biblioteca de componentes reutilizáveis para Vue 3 e TypeScript,
 
 ## Tecnologias
 
-Vue 3, Composition API e TypeScript formam a base. npm e Vite estão configurados, assim como Storybook para Vue/Vite. O ambiente validado usa Node 24.22.2 e npm 11.19.1; a política de versões está em revisão. Vitest permanece em avaliação.
+Vue 3, Composition API e TypeScript formam a base. npm e Vite estão configurados, assim como Storybook para Vue/Vite. O ambiente validado usa Node 24.22.2 e npm 11.19.1; a política de versões foi aprovada. Vitest permanece em avaliação.
 
 ## Como começar
 
@@ -29,4 +29,4 @@ Acesse `http://localhost:6006` para o exemplo de introdução. O catálogo de co
 
 ## Documentação e contribuição
 
-A [arquitetura](docs/architecture.md) é a referência técnica permanente. Consulte também a proposta de [tokens, acessibilidade e i18n](docs/design-guidelines.md). O processo de contribuição ainda não foi definido; as convenções técnicas propostas estão descritas nesse documento.
+A [arquitetura](docs/architecture.md) é a referência técnica permanente. Consulte também as diretrizes de [tokens, acessibilidade e i18n](docs/design-guidelines.md). O processo de contribuição ainda não foi definido; as convenções técnicas propostas estão descritas nesse documento.

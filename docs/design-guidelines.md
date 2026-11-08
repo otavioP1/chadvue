@@ -1,12 +1,12 @@
 # Tokens de cores, acessibilidade e internacionalização
 
-**Estado:** proposta para revisão. Contexto compartilhado Vue para idioma e uso de tokens semânticos por CSS custom properties já aprovados na [arquitetura](architecture.md). Paleta, nomes dos tokens e detalhamentos abaixo ainda não aprovados nem implementados.
+**Estado:** diretrizes aprovadas como referência de desenvolvimento. Paleta, tokens, personalização, WCAG 2.2 AA e estratégia de idioma foram revisados pelo mantenedor. Temas e internacionalização ainda não estão implementados; a aprovação não constitui conformidade comprovada de componentes. Consulte a [arquitetura](architecture.md).
 
 ## Tokens e tema inicial
 
-Proposta de tema claro com cores opacas. Os nomes descrevem funções; componentes devem consumir tokens, sem conhecer os valores da paleta. O prefixo CSS `--chadvue-` evita colisões e independe da decisão de não usar prefixo nos nomes dos componentes.
+Tema claro definido com cores opacas. Os nomes descrevem funções; componentes devem consumir tokens, sem conhecer os valores da paleta. O prefixo CSS `--chadvue-` evita colisões e independe da decisão de não usar prefixo nos nomes dos componentes.
 
-| Token CSS proposto | Valor | Uso |
+| Token CSS | Valor | Uso |
 | --- | --- | --- |
 | `--chadvue-color-canvas` | `#F8FAFC` | Fundo geral |
 | `--chadvue-color-surface` | `#FFFFFF` | Superfícies de conteúdo e controles |
@@ -43,9 +43,9 @@ Exemplo documental, sem folha de estilos implementada:
 }
 ```
 
-A proposta é distribuir valores padrão separadamente e permitir sobrescrita por cascata em um contêiner ancestral. Importação de CSS, especificidade e aplicação real serão validadas na implementação. Ao alterar uma cor, revisar os estados e todas as combinações afetadas. Tema escuro, alternância automática e API JavaScript de temas não estão definidos nesta proposta.
+A estratégia definida é distribuir valores padrão separadamente e permitir sobrescrita por cascata em um contêiner ancestral. Importação de CSS, especificidade e aplicação real serão validadas na implementação. Ao alterar uma cor, revisar os estados e todas as combinações afetadas. Tema escuro, alternância automática e API JavaScript de temas não estão definidos neste escopo.
 
-### Contraste da paleta proposta
+### Contraste da paleta definida
 
 Foram calculadas razões de contraste em sRGB, linearizando canais e usando luminância relativa `0,2126 R + 0,7152 G + 0,0722 B` e razão `(Lmaior + 0,05) / (Lmenor + 0,05)`. Valores exibidos com três casas; a comparação com o limiar usa o valor integral.
 
@@ -66,9 +66,9 @@ A verificação é reproduzível com `npm run check:contrast`, que lê esta tabe
 
 ## Diretrizes de acessibilidade
 
-Propõe-se WCAG 2.2 nível AA como referência de avaliação, com padrões WAI-ARIA APG quando aplicáveis. Não há declaração de conformidade da biblioteca ou de aplicações consumidoras.
+Adota-se WCAG 2.2 nível AA como referência de avaliação, com padrões WAI-ARIA APG quando aplicáveis. Não há declaração de conformidade da biblioteca ou de aplicações consumidoras.
 
-| Área | Diretriz proposta | Verificação na implementação |
+| Área | Diretriz | Verificação na implementação |
 | --- | --- | --- |
 | Semântica | Preferir `button`, `a`, `input` e outros elementos nativos adequados | Inspecionar DOM e árvore de acessibilidade |
 | Nome acessível | Associar rótulos aos campos; controles apenas com ícone precisam de nome; placeholder não substitui rótulo | Conferir nome anunciado e relações de rótulo |
@@ -85,9 +85,9 @@ Registrar por componente: cenário, ambiente, resultado e limitações. Combinar
 
 ## Diretrizes de internacionalização
 
-O contexto compartilhado Vue está aprovado. Propõe-se detalhá-lo usando `provide`/`inject`, com estado reativo por aplicação ou subárvore, sem singleton mutável compartilhado entre aplicações. Os nomes de funções, tipos e eventual componente provedor permanecem em aberto.
+O contexto compartilhado Vue usará `provide`/`inject`, com estado reativo por aplicação ou subárvore, sem singleton mutável compartilhado entre aplicações. Os nomes de funções, tipos e eventual componente provedor permanecem em aberto.
 
-| Aspecto | Proposta para revisão |
+| Aspecto | Diretriz aprovada |
 | --- | --- |
 | Idioma inicial | `pt-BR`; usar `en-US` como segundo idioma de demonstração quando houver mensagens reais |
 | Contexto | Compartilhar locale e catálogo; mudanças reativas atualizam textos internos sem remontar componentes |
@@ -106,7 +106,7 @@ A aplicação deve definir o atributo `lang` apropriado no documento ou na subá
 - Exercitar ausência de contexto, tradução ausente e parâmetros de mensagens.
 - Conferir formatos de datas e números com locale, moeda e fuso explícitos quando aplicáveis.
 - Conferir isolamento entre contextos e preservação de valores e foco na troca de idioma.
-- Avaliar textos longos e atributos de idioma; suporte completo a RTL não está definido nesta proposta.
+- Avaliar textos longos e atributos de idioma; suporte completo a RTL não está definido neste escopo.
 
 Nenhuma dessas verificações de execução foi realizada: ainda não existe implementação.
 
