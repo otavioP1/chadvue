@@ -1,4 +1,4 @@
-﻿# Instruções para agentes — ChadVue
+# Instruções para agentes — ChadVue
 
 ## Contexto e fontes de verdade
 
@@ -19,7 +19,7 @@ Preserve as diretrizes de modularidade, TypeScript, Composition API, contratos p
 1. Antes de editar, apresente brevemente o plano e os arquivos afetados.
 2. Prefira mudanças pequenas e relacionadas à tarefa solicitada; não antecipe outras tarefas.
 3. Preserve APIs públicas e padrões existentes. Apresente opções antes de consolidar decisões pendentes.
-4. Evite novas dependências sem justificativa. Verifique gerenciador e versões adotados; `pnpm` permanece uma proposta até confirmação.
+4. Evite novas dependências sem justificativa. Use npm, conforme decisão aprovada; verifique as versões adotadas e não introduza outro gerenciador ou arquivo de lock sem confirmação.
 5. Não declare testes, builds, acessibilidade ou funcionalidades validados sem executar as verificações correspondentes.
 6. Reflita mudanças arquiteturais em `docs/architecture.md` e mudanças de comportamento público na documentação técnica pertinente.
 7. Evite duplicar informações: tickets devem apontar para a documentação técnica, sem reproduzi-la integralmente.

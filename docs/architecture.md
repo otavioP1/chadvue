@@ -1,6 +1,6 @@
 # Arquitetura do ChadVue
 
-> **Estado:** proposta arquitetural, pendente de validação. O repositório contém apenas documentação, sem componentes ou ferramentas configuradas.
+> **Estado:** arquitetura inicial aprovada como referência de desenvolvimento. Implementação e validação técnica pendentes. O repositório contém apenas documentação, sem componentes ou ferramentas configuradas.
 
 ## Visão geral da arquitetura
 
@@ -69,12 +69,12 @@ Definir e implementar uma biblioteca modular de componentes Vue com personaliza�
 
 ## Tecnologias e ferramentas
 
-| Área | Proposta | Situação |
+| Área | Diretriz ou escolha | Situação |
 | --- | --- | --- |
 | Framework | Vue 3, com Composition API | A validar na inicialização |
 | Linguagem | TypeScript | A validar na inicialização |
-| Build | Vite e modo biblioteca, se adequado | A avaliar na configuração do ambiente |
-| Gerenciador de pacotes | pnpm, sujeito à confirmação | Pendente |
+| Build | Vite | Escolha aprovada; modo biblioteca e artefatos a validar na configuração |
+| Gerenciador de pacotes | npm | Escolha aprovada; versão e configuração a validar |
 | Documentação visual | Storybook para Vue/Vite | A validar na configuração |
 | Estilização | CSS custom properties com tokens semânticos | Detalhamento pendente |
 | Testes | Vitest e ferramentas de teste de componentes e acessibilidade | A validar após seleção das ferramentas |
@@ -100,14 +100,14 @@ package.json          # configuração do pacote
 
 ## Padrões de desenvolvimento de componentes
 
-- **Nomenclatura:** componentes em PascalCase, com prefixo opcional `Cv` a validar (ex.: `CvButton`).
+- **Nomenclatura:** componentes em PascalCase, sem prefixo `Cv` (por exemplo, `Button`, apenas ilustrativo; não define o catálogo).
 - **Propriedades:** nomes consistentes, valores tipados e defaults explícitos.
 - **Eventos:** emissão documentada, com suporte às convenções do Vue (`v-model` quando aplicável).
 - **Slots:** composição preferencial em vez de APIs excessivamente rígidas.
 - **Estados:** tratamento consistente de `disabled`, carregamento, erro, foco e seleção conforme a natureza de cada componente.
 - **Acessibilidade:** HTML semântico primeiro; WAI-ARIA para estados, relações e widgets que realmente necessitem; interação por teclado e gerenciamento de foco nos componentes interativos.
 - **Temas:** uso de tokens semânticos e variáveis CSS em vez de valores visuais espalhados.
-- **i18n:** textos internos configuráveis e estratégia de locale ainda a definir.
+- **i18n:** textos internos configuráveis e idioma em contexto compartilhado Vue; contrato e mecanismo ainda a detalhar.
 
 ## Organização e responsabilidades dos módulos
 
@@ -120,15 +120,64 @@ package.json          # configuração do pacote
 
 ## Decisões ainda não validadas
 
-1. Confirmar o gerenciador de pacotes e as versões mínimas suportadas.
-2. Escolher convenção final de nomes e entradas públicas.
+1. Validar npm e Vite no ambiente e definir as versões mínimas suportadas.
+2. Validar as exportações nomeadas pela entrada principal, com nomes em PascalCase sem prefixo.
 3. Priorizar quais componentes integram o MVP.
 4. Definir formato e mecanismo de distribuição da biblioteca.
 5. Detalhar tokens, acessibilidade e internacionalização em documentação técnica específica.
 
+### Decisões aprovadas
+
+As escolhas abaixo foram aprovadas pelo mantenedor. Aprovação arquitetural não significa implementação ou validação técnica concluída.
+
+| Decisão | Escolha aprovada | Validação ou detalhamento pendente |
+| --- | --- | --- |
+| Gerenciador | npm | Versão, instalação reproduzível e arquivo de lock |
+| Build | Vite | Configuração em modo biblioteca, tipos e artefatos consumíveis |
+| Nomes públicos | PascalCase sem prefixo `Cv` | Aplicar aos componentes e documentar eventuais aliases no consumo |
+| Configuração de idioma | Contexto compartilhado Vue | API de configuração, mecanismo, escopo, reatividade e comportamento de ausência de tradução |
+
+A importação será feita por **exportações nomeadas pela entrada principal**. Exemplo ilustrativo, sem pacote ou componentes disponíveis:
+
+```ts
+// Exportações nomeadas pela entrada principal
+import { Button, Input } from 'chadvue'
+
+```
+
+A escolha concentra os imports em um caminho público. Subcaminhos por componente não fazem parte do contrato inicial aprovado. Resolução de tipos, estilos e comportamento do empacotamento precisam ser testados; a sintaxe isoladamente não garante redução do código final.
+
+O catálogo inicial de componentes, as versões mínimas e o formato de distribuição continuam em aberto.
+
 ## API pública e extensibilidade
 
-Propriedades, eventos e slots devem expressar semântica, comportamento e composição. Imports públicos devem ser previsíveis, com entradas explícitas. A convenção final de nomes, exportações e formato de distribuição ainda não foi definida; não há API implementada.
+Propriedades, eventos e slots devem expressar semântica, comportamento e composição. Imports públicos devem ser previsíveis, com entradas explícitas. Os nomes seguem PascalCase sem prefixo e os componentes serão expostos por exportações nomeadas pela entrada principal. O catálogo de exportações e o formato de distribuição ainda precisam ser definidos. Não há API implementada.
+
+### Contrato mínimo para cada componente
+
+Antes da implementação de um componente, sua especificação deve registrar:
+
+- Propósito, limites e elemento HTML ou padrão de interação utilizado.
+- Propriedades com tipos, valores padrão e combinações permitidas.
+- Eventos com payloads e condições de emissão; convenção de `v-model` quando aplicável.
+- Slots com finalidade e dados expostos, quando houver.
+- Estados suportados e seus efeitos visuais e comportamentais.
+- Operação por teclado, foco e requisitos de nome acessível, quando aplicáveis.
+- Tokens consumidos e textos internos que precisem de tradução.
+- Exemplos de uso e verificações observáveis do comportamento público.
+
+Esse padrão de documentação foi aprovado; propriedades e eventos concretos serão definidos por componente.
+
+### Limites e dependências entre módulos
+
+- Componentes podem consumir composables, tokens e recursos de idioma da biblioteca, sem depender de regras de negócio da aplicação consumidora.
+- Composables compartilhados não devem depender de componentes concretos, evitando dependências circulares.
+- Tokens definem valores e significados visuais, sem controlar regras de interação ou conteúdo traduzível.
+- Recursos de idioma não devem depender de renderização de componentes.
+- A entrada pública expõe apenas contratos destinados ao consumidor; caminhos internos não constituem API pública garantida.
+- Storybook e testes podem consumir a biblioteca; a biblioteca não deve importar stories, testes ou configuração dessas ferramentas.
+
+Esses limites foram aprovados e sua aplicação será verificada junto da estrutura real do código. Idioma usará contexto compartilhado Vue; o mecanismo concreto, registro global e adaptadores não estão definidos.
 
 ## Estratégia de temas e design tokens
 
@@ -142,7 +191,7 @@ Validar com inspeção semântica, teclado, foco, ferramentas automatizadas e te
 
 ## Internacionalização
 
-Textos internos e mensagens que exigirem tradução devem ser configuráveis, sem fixar um único idioma. Prever mensagens e formatos localizáveis e separar recursos de idioma dos componentes. Estratégia de locale, idiomas iniciais e mecanismo de configuração permanecem pendentes. A validação deve demonstrar troca de idioma em componentes com texto interno.
+Textos internos e mensagens que exigirem tradução devem ser configuráveis, sem fixar um único idioma. Prever mensagens e formatos localizáveis e separar recursos de idioma dos componentes. O idioma será configurado em contexto compartilhado Vue, evitando repetir a configuração em cada componente. Contrato de locale, idiomas iniciais e mecanismo concreto de configuração permanecem pendentes. A validação deve demonstrar troca de idioma em componentes com texto interno.
 
 ## Documentação e testes
 

@@ -1,4 +1,4 @@
-﻿# ChadVue
+# ChadVue
 
 ChadVue é uma biblioteca de componentes reutilizáveis para Vue 3 e TypeScript, em fase de definição arquitetural. Inspirada nos conceitos de design e ergonomia do Material UI, busca oferecer interfaces consistentes e adaptáveis com APIs próprias para o ecossistema Vue.
 
@@ -13,7 +13,7 @@ ChadVue é uma biblioteca de componentes reutilizáveis para Vue 3 e TypeScript,
 
 ## Tecnologias
 
-Vue 3, Composition API e TypeScript são a base prevista. Storybook está previsto para documentação interativa. Vite e Vitest estão em avaliação; o gerenciador de pacotes e as versões mínimas ainda não foram confirmados. Nenhuma ferramenta está configurada no repositório.
+Vue 3, Composition API e TypeScript são a base prevista. Storybook está previsto para documentação interativa. npm e Vite foram escolhidos para o ambiente e build. Vitest permanece em avaliação e as versões mínimas ainda não foram confirmadas. Nenhuma ferramenta está configurada no repositório.
 
 ## Como começar
 
