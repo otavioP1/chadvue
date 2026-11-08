@@ -12,6 +12,8 @@ Antes de implementar, consulte o ticket correspondente quando disponível e a do
 
 ## Princípios técnicos
 
+Ao se referir ao projeto como design system, use o masculino: **o ChadVue**, **do ChadVue**, **no ChadVue**. O feminino continua correto quando se refere explicitamente à biblioteca ou à arquitetura.
+
 Preserve as diretrizes de modularidade, TypeScript, Composition API, contratos públicos claros, tokens semânticos, acessibilidade, internacionalização, Storybook e testabilidade descritas na arquitetura. Propostas pendentes não são decisões confirmadas nem funcionalidades implementadas.
 
 ## Regras para alterações
