@@ -1,6 +1,6 @@
 # ChadVue
 
-ChadVue é uma biblioteca de componentes reutilizáveis para Vue 3 e TypeScript, em fase de definição arquitetural. Inspirada nos conceitos de design e ergonomia do Material UI, busca oferecer interfaces consistentes e adaptáveis com APIs próprias para o ecossistema Vue.
+ChadVue é uma biblioteca de componentes reutilizáveis para Vue 3 e TypeScript, com arquitetura inicial aprovada e ambiente de desenvolvimento configurado. Inspirada nos conceitos de design e ergonomia do Material UI, busca oferecer interfaces consistentes e adaptáveis com APIs próprias para o ecossistema Vue.
 
 ## Objetivos e características planejadas
 
@@ -13,12 +13,20 @@ ChadVue é uma biblioteca de componentes reutilizáveis para Vue 3 e TypeScript,
 
 ## Tecnologias
 
-Vue 3, Composition API e TypeScript são a base prevista. Storybook está previsto para documentação interativa. npm e Vite foram escolhidos para o ambiente e build. Vitest permanece em avaliação e as versões mínimas ainda não foram confirmadas. Nenhuma ferramenta está configurada no repositório.
+Vue 3, Composition API e TypeScript formam a base. npm e Vite estão configurados, assim como Storybook para Vue/Vite. O ambiente validado usa Node 24.22.2 e npm 11.19.1; a política de versões está em revisão. Vitest permanece em avaliação.
 
 ## Como começar
 
-O repositório contém apenas documentação. Ainda não há componentes implementados ou comandos de instalação e execução validados. Comece pela [arquitetura](docs/architecture.md), que descreve o escopo, as responsabilidades dos módulos e as decisões pendentes.
+Com Node 24.22.2 e npm 11.19.1 disponíveis, execute:
+
+```sh
+npm ci
+npm run build
+npm run storybook
+```
+
+Acesse `http://localhost:6006` para o exemplo de introdução. O catálogo de componentes ainda não foi implementado. Consulte o [ambiente de desenvolvimento](docs/development.md) para tipos, build estático, contraste e limitações de validação.
 
 ## Documentação e contribuição
 
-A [documentação arquitetural](docs/architecture.md) é a referência técnica permanente. O processo de contribuição ainda não foi definido; as convenções técnicas propostas estão descritas nesse documento.
+A [arquitetura](docs/architecture.md) é a referência técnica permanente. Consulte também a proposta de [tokens, acessibilidade e i18n](docs/design-guidelines.md). O processo de contribuição ainda não foi definido; as convenções técnicas propostas estão descritas nesse documento.
