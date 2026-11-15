@@ -1,0 +1,86 @@
+.showcase[data-theme="ocean"] {
+  --chadvue-color-canvas: #f0f6fa;
+  --chadvue-color-surface: #ffffff;
+  --chadvue-color-text: #172b3a;
+  --chadvue-color-text-muted: #4e6575;
+  --chadvue-color-border: #d3dfe8;
+  --chadvue-color-border-strong: #718391;
+  --chadvue-color-primary: #075985;
+  --chadvue-color-primary-hover: #064c72;
+  --chadvue-color-primary-active: #043d5c;
+  --chadvue-color-on-primary: #ffffff;
+  --chadvue-color-focus: #0369a1;
+  --chadvue-color-danger: #b42318;
+  --chadvue-color-danger-hover: #991b1b;
+  --chadvue-color-danger-active: #7f1d1d;
+  --chadvue-color-success: #166534;
+  --chadvue-color-warning: #854d0e;
+  --chadvue-color-info: #075985;
+  --chadvue-color-disabled-surface: #e3e8ec;
+  --chadvue-color-disabled-text: #566570;
+  --chadvue-color-secondary-surface: #e3edf3;
+  --chadvue-color-secondary-hover: #d3e3ed;
+  --chadvue-color-secondary-active: #c3d9e6;
+  --chadvue-color-primary-subtle: #e0f2fe;
+  --chadvue-color-focus-ring: rgb(3 105 161 / 16%);
+  --chadvue-color-danger-subtle: #fef2f2;
+  --chadvue-color-backdrop: rgb(11 30 45 / 58%);
+}
+
+.showcase[data-theme="plum"] {
+  --chadvue-color-canvas: #f7f3fa;
+  --chadvue-color-surface: #ffffff;
+  --chadvue-color-text: #2b1f33;
+  --chadvue-color-text-muted: #67576f;
+  --chadvue-color-border: #e4d9e8;
+  --chadvue-color-border-strong: #86758f;
+  --chadvue-color-primary: #5b21b6;
+  --chadvue-color-primary-hover: #4c1d95;
+  --chadvue-color-primary-active: #3b0764;
+  --chadvue-color-on-primary: #ffffff;
+  --chadvue-color-focus: #7e22ce;
+  --chadvue-color-danger: #b42318;
+  --chadvue-color-danger-hover: #991b1b;
+  --chadvue-color-danger-active: #7f1d1d;
+  --chadvue-color-success: #166534;
+  --chadvue-color-warning: #854d0e;
+  --chadvue-color-info: #6d28d9;
+  --chadvue-color-disabled-surface: #e9e5ec;
+  --chadvue-color-disabled-text: #625b68;
+  --chadvue-color-secondary-surface: #eee7f4;
+  --chadvue-color-secondary-hover: #e4d9ed;
+  --chadvue-color-secondary-active: #d7c7e3;
+  --chadvue-color-primary-subtle: #f3e8ff;
+  --chadvue-color-focus-ring: rgb(126 34 206 / 18%);
+  --chadvue-color-danger-subtle: #fef2f2;
+  --chadvue-color-backdrop: rgb(33 20 42 / 60%);
+}
+
+.showcase[data-theme="terracotta"] {
+  --chadvue-color-canvas: #faf4f0;
+  --chadvue-color-surface: #ffffff;
+  --chadvue-color-text: #2b211d;
+  --chadvue-color-text-muted: #69584f;
+  --chadvue-color-border: #e6d8cf;
+  --chadvue-color-border-strong: #8c7669;
+  --chadvue-color-primary: #9a3412;
+  --chadvue-color-primary-hover: #7c2d12;
+  --chadvue-color-primary-active: #5b2110;
+  --chadvue-color-on-primary: #ffffff;
+  --chadvue-color-focus: #c2410c;
+  --chadvue-color-danger: #b42318;
+  --chadvue-color-danger-hover: #991b1b;
+  --chadvue-color-danger-active: #7f1d1d;
+  --chadvue-color-success: #166534;
+  --chadvue-color-warning: #854d0e;
+  --chadvue-color-info: #0e7490;
+  --chadvue-color-disabled-surface: #e9e5e2;
+  --chadvue-color-disabled-text: #635a55;
+  --chadvue-color-secondary-surface: #f2e9e3;
+  --chadvue-color-secondary-hover: #ebdcd2;
+  --chadvue-color-secondary-active: #dec8ba;
+  --chadvue-color-primary-subtle: #ffedd5;
+  --chadvue-color-focus-ring: rgb(194 65 12 / 18%);
+  --chadvue-color-danger-subtle: #fef2f2;
+  --chadvue-color-backdrop: rgb(45 27 18 / 58%);
+}

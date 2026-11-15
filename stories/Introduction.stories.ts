@@ -6,7 +6,7 @@ const meta = {
   component: Introduction,
   tags: ['autodocs'],
   args: { title: 'ChadVue' },
-  parameters: { docs: { description: { component: 'Página de apresentação usada para verificar a integração Vue, TypeScript e Storybook. Não faz parte da API pública da biblioteca.' } } },
+  parameters: { docs: { description: { component: 'Apresentação do ChadVue e do catálogo atual de componentes. É conteúdo do Storybook, não faz parte da API pública da biblioteca.' } } },
 } satisfies Meta<typeof Introduction>
 
 export default meta
