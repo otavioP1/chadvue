@@ -1,2 +1,10 @@
-// Entrada reservada à API pública. O catálogo de componentes será definido depois.
-export {}
+import './styles/components.css'
+export { default as Button } from './components/Button.vue'
+export { default as TextField } from './components/TextField.vue'
+export { default as Checkbox } from './components/Checkbox.vue'
+export { default as Dialog } from './components/Dialog.vue'
+export { default as LocaleProvider } from './components/LocaleProvider.vue'
+export { createI18n, provideI18n, useI18n, i18nKey } from './composables/i18n'
+export type { I18nContext, I18nOptions } from './composables/i18n'
+export { ptBR, enUS } from './locales/messages'
+export type { Catalogs, Messages, MessageKey } from './locales/messages'

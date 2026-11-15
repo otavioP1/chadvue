@@ -1,10 +1,10 @@
 # Arquitetura do ChadVue
 
-> **Estado:** arquitetura inicial aprovada como referência de desenvolvimento. Base Vue/TypeScript, build e Storybook configurados e verificados conforme o [ambiente de desenvolvimento](development.md). Componentes de produto, temas e i18n ainda não implementados.
+> **Estado:** arquitetura inicial aprovada como referência de desenvolvimento. Base Vue/TypeScript, build e Storybook configurados e verificados conforme o [ambiente de desenvolvimento](development.md). Tema claro, componentes iniciais, contexto de idioma e testes implementados; alcance de validação descrito em [qualidade](quality.md).
 
 ## Visão geral da arquitetura
 
-O **ChadVue** é uma proposta de biblioteca de componentes de interface para aplicações **Vue.js**, inspirada em princípios de design e ergonomia de bibliotecas como Material UI, sem depender de React. Seu propósito é facilitar a construção de interfaces consistentes, reutilizáveis, acessíveis e adaptáveis a diferentes identidades visuais e idiomas.
+O **ChadVue** é um design system com biblioteca de componentes de interface para aplicações **Vue.js**, inspirada em princípios de design e ergonomia de bibliotecas como Material UI, sem depender de React. Seu propósito é facilitar a construção de interfaces consistentes, reutilizáveis, acessíveis e adaptáveis a diferentes identidades visuais e idiomas.
 
 ## Objetivos e princípios
 
@@ -28,12 +28,12 @@ Definir e implementar uma biblioteca modular de componentes Vue com personaliza�
 ### Incluído no MVP
 
 - Estrutura de projeto em Vue 3 e TypeScript.
-- Componentes iniciais de interface, ainda a selecionar.
+- Componentes iniciais: Button, TextField, Checkbox e Dialog.
 - Contratos para propriedades, eventos, slots e estados dos componentes.
-- Sistema de tokens e temas, ainda a detalhar e implementar.
-- Diretrizes de acessibilidade e internacionalização, ainda a detalhar.
+- Tema claro com tokens CSS, estados e sobrescrita por contêiner.
+- Diretrizes e implementação inicial de acessibilidade e internacionalização.
 - Storybook para documentação e demonstração isolada.
-- Testes de comportamento e acessibilidade, ainda a validar.
+- Testes unitários e de navegador para comportamento, teclado, foco e regras axe.
 
 ### Fora do escopo inicial
 
@@ -76,15 +76,15 @@ Definir e implementar uma biblioteca modular de componentes Vue com personaliza�
 | Build | Vite | Modo biblioteca ESM, externalização Vue e declarações verificados; publicação futura |
 | Gerenciador de pacotes | npm | Lockfile e npm ci verificados com 11.19.1; política de versões aprovada |
 | Documentação visual | Storybook para Vue/Vite | 10.6.6: servidor, índice e build estático verificados |
-| Estilização | CSS custom properties com tokens semânticos | Diretrizes aprovadas; implementação futura |
-| Testes | Vitest e ferramentas de teste de componentes e acessibilidade | A validar após seleção das ferramentas |
+| Estilização | Tokens CSS semânticos mapeados a utilitários Tailwind prefixados | Tema claro; classes compiladas no CSS distribuído sem Preflight global |
+| Testes | Vitest, Vue Test Utils, jsdom, Playwright e axe-core | Testes executados; cenários e limites em qualidade |
 | Distribuição | Pacote com entradas públicas explícitas | A definir antes da publicação |
 
 **Princípio central:** os componentes não devem conhecer a identidade visual de uma aplicação consumidora. A apresentação deve ser controlada por tokens e temas, enquanto a API do componente expressa semântica, comportamento e composição.
 
 ## Estrutura do projeto
 
-A documentação permanente fica em `docs/`. A estrutura real e os comandos estão em [ambiente de desenvolvimento](development.md). A árvore abaixo é a estrutura-alvo: `src/index.ts`, `.storybook/` e `package.json` já existem; os demais módulos ainda são referenciais:
+A documentação permanente fica em `docs/`. A estrutura real e os comandos estão em [ambiente de desenvolvimento](development.md). A árvore abaixo corresponde aos módulos implementados:
 
 ```text
 src/
@@ -100,14 +100,14 @@ package.json          # configuração do pacote
 
 ## Padrões de desenvolvimento de componentes
 
-- **Nomenclatura:** componentes em PascalCase, sem prefixo `Cv` (por exemplo, `Button`, apenas ilustrativo; não define o catálogo).
+- **Nomenclatura:** componentes em PascalCase, sem prefixo `Cv`: Button, TextField, Checkbox e Dialog.
 - **Propriedades:** nomes consistentes, valores tipados e defaults explícitos.
 - **Eventos:** emissão documentada, com suporte às convenções do Vue (`v-model` quando aplicável).
 - **Slots:** composição preferencial em vez de APIs excessivamente rígidas.
 - **Estados:** tratamento consistente de `disabled`, carregamento, erro, foco e seleção conforme a natureza de cada componente.
 - **Acessibilidade:** HTML semântico primeiro; WAI-ARIA para estados, relações e widgets que realmente necessitem; interação por teclado e gerenciamento de foco nos componentes interativos.
 - **Temas:** uso de tokens semânticos e variáveis CSS em vez de valores visuais espalhados.
-- **i18n:** textos internos configuráveis e idioma em contexto compartilhado Vue; contrato e mecanismo ainda a detalhar.
+- **i18n:** textos internos configuráveis e idioma em contexto compartilhado Vue, com contratos em [internacionalização](internationalization.md).
 
 ## Organização e responsabilidades dos módulos
 
@@ -121,10 +121,10 @@ package.json          # configuração do pacote
 ## Decisões ainda não validadas
 
 1. Ampliar a validação de compatibilidade além das versões executadas: Node 24.22.2, npm 11.19.1 e Vue 3.5.45. A política inicial de versões foi aprovada.
-2. Validar o consumo real de componentes pela entrada principal quando o catálogo existir; a entrada ESM vazia já foi carregada em Node.
-3. Priorizar quais componentes integram o MVP.
+2. Ampliar testes de consumo em aplicações e navegadores além do bundle ESM/SSR e Chrome já verificados.
+3. Priorizar futuras expansões além de Button, TextField, Checkbox e Dialog.
 4. Definir formato e mecanismo de distribuição da biblioteca.
-5. Implementar e validar a aplicação das diretrizes aprovadas de [tokens, acessibilidade e internacionalização](design-guidelines.md).
+5. Ampliar avaliação manual de acessibilidade e tecnologias assistivas, sem presumir conformidade completa pelos testes automatizados.
 
 ### Decisões aprovadas
 
@@ -132,26 +132,26 @@ As escolhas abaixo foram aprovadas pelo mantenedor. Aprovação arquitetural nã
 
 | Decisão | Escolha aprovada | Validação ou detalhamento pendente |
 | --- | --- | --- |
-| Gerenciador | npm | Versão, instalação reproduzível e arquivo de lock |
-| Build | Vite | Configuração em modo biblioteca, tipos e artefatos consumíveis |
-| Nomes públicos | PascalCase sem prefixo `Cv` | Aplicar aos componentes e documentar eventuais aliases no consumo |
-| Configuração de idioma | Contexto compartilhado Vue | API de configuração, mecanismo, escopo, reatividade e comportamento de ausência de tradução |
+| Gerenciador | npm | 11.19.1 e instalação por lockfile verificados |
+| Build | Vite | ESM, CSS separado, declarações e consumo SSR verificados; publicação futura |
+| Nomes públicos | PascalCase sem prefixo `Cv` | Aplicado ao catálogo; aliases locais permitidos no consumidor |
+| Configuração de idioma | Contexto compartilhado Vue | LocaleProvider e composables, pt-BR/en-US, reatividade e fallback testados |
 
-A importação será feita por **exportações nomeadas pela entrada principal**. Exemplo ilustrativo, sem pacote ou componentes disponíveis:
+A importação será feita por **exportações nomeadas pela entrada principal**. Exemplo de consumo do pacote construído localmente:
 
 ```ts
 // Exportações nomeadas pela entrada principal
-import { Button, Input } from 'chadvue'
+import { Button, TextField } from 'chadvue'
 
 ```
 
-A escolha concentra os imports em um caminho público. Subcaminhos por componente não fazem parte do contrato inicial aprovado. Resolução de tipos, estilos e comportamento do empacotamento precisam ser testados; a sintaxe isoladamente não garante redução do código final.
+A escolha concentra os imports em um caminho público. Subcaminhos por componente não fazem parte do contrato inicial aprovado. Tipos, CSS separado e consumo ESM/SSR foram verificados; a sintaxe isoladamente não garante redução do código final.
 
-O catálogo inicial de componentes, as versões mínimas e o formato de distribuição continuam em aberto.
+O catálogo inicial e a base de versões estão definidos. O pacote local usa ESM; publicação e outros formatos continuam em aberto.
 
 ## API pública e extensibilidade
 
-Propriedades, eventos e slots devem expressar semântica, comportamento e composição. Imports públicos devem ser previsíveis, com entradas explícitas. Os nomes seguem PascalCase sem prefixo e os componentes serão expostos por exportações nomeadas pela entrada principal. O catálogo de exportações e o formato de distribuição ainda precisam ser definidos. A entrada pública está configurada, mas ainda não exporta componentes de produto.
+Propriedades, eventos e slots devem expressar semântica, comportamento e composição. Imports públicos devem ser previsíveis, com entradas explícitas. Os nomes seguem PascalCase sem prefixo e os componentes serão expostos por exportações nomeadas pela entrada principal. Componentes, provedor, composables e catálogos são exportados; CSS é consumido por chadvue/style.css. Veja [contratos públicos](components.md). Publicação continua fora do escopo atual.
 
 ### Contrato mínimo para cada componente
 
@@ -166,7 +166,7 @@ Antes da implementação de um componente, sua especificação deve registrar:
 - Tokens consumidos e textos internos que precisem de tradução.
 - Exemplos de uso e verificações observáveis do comportamento público.
 
-Esse padrão de documentação foi aprovado; propriedades e eventos concretos serão definidos por componente.
+Esse padrão está aplicado aos [contratos públicos](components.md).
 
 ### Limites e dependências entre módulos
 
@@ -177,13 +177,13 @@ Esse padrão de documentação foi aprovado; propriedades e eventos concretos se
 - A entrada pública expõe apenas contratos destinados ao consumidor; caminhos internos não constituem API pública garantida.
 - Storybook e testes podem consumir a biblioteca; a biblioteca não deve importar stories, testes ou configuração dessas ferramentas.
 
-Esses limites foram aprovados e sua aplicação será verificada junto da estrutura real do código. Idioma usará contexto compartilhado Vue; o mecanismo concreto, registro global e adaptadores não estão definidos.
+Esses limites estão aplicados aos módulos. Idioma usa provide/inject e LocaleProvider; não há registro global obrigatório nem adaptadores externos.
 
 ## Estratégia de temas e design tokens
 
-O catálogo de cores, os pares de contraste calculados e a proposta de personalização estão em [diretrizes de design](design-guidelines.md). O detalhamento foi aprovado, mantendo a implementação como etapa futura.
+O catálogo de cores, os pares de contraste calculados e a proposta de personalização estão em [diretrizes de design](design-guidelines.md). O tema claro está implementado em CSS separado, com sobrescrita local verificada.
 
-Componentes devem consumir tokens semânticos por CSS custom properties, evitando cores fixas e valores visuais espalhados. A apresentação deve ser adaptável sem modificar os componentes. O catálogo, os valores, o mapeamento e a proposta de sobrescrita por cascata estão documentados e aprovados; não foram implementados como tema.
+Componentes devem consumir tokens semânticos por CSS custom properties e utilitários Tailwind prefixados com `tw:`, evitando cores fixas e regras visuais artesanais dispersas. O plugin de build compila somente as classes usadas nos componentes para `chadvue/style.css`; o pacote não injeta Preflight global e não exige Tailwind em tempo de execução. Lucide fornece ícones SVG tree-shakable como dependência de execução. A apresentação continua personalizável por tokens sem modificar os componentes.
 
 ## Acessibilidade
 
@@ -197,10 +197,10 @@ Validar com inspeção semântica, teclado, foco, ferramentas automatizadas e te
 
 As [diretrizes de design](design-guidelines.md) detalham as escolhas aprovadas de contexto reativo, idioma inicial, fallback e formatos.
 
-Textos internos e mensagens que exigirem tradução devem ser configuráveis, sem fixar um único idioma. Prever mensagens e formatos localizáveis e separar recursos de idioma dos componentes. O idioma será configurado em contexto compartilhado Vue, evitando repetir a configuração em cada componente. Foram aprovados pt-BR como padrão, en-US para demonstração e provide/inject reativo com fallback; nomes da API e implementação concreta ainda serão definidos. A validação deve demonstrar troca de idioma em componentes com texto interno.
+Textos internos e mensagens que exigirem tradução devem ser configuráveis, sem fixar um único idioma. Prever mensagens e formatos localizáveis e separar recursos de idioma dos componentes. O idioma será configurado em contexto compartilhado Vue, evitando repetir a configuração em cada componente. Foram aprovados pt-BR como padrão, en-US para demonstração e provide/inject reativo com fallback; a API está implementada e descrita em [internacionalização](internationalization.md). A validação deve demonstrar troca de idioma em componentes com texto interno.
 
 ## Documentação e testes
 
 O Storybook deve apresentar API, exemplos funcionais e código, sem ser dependência de execução da biblioteca. Validar importação e renderização em aplicação de exemplo, alteração visual de tokens, propriedades, eventos, slots, troca de idioma e comportamentos acessíveis conforme as tabelas acima.
 
-Prever verificação TypeScript, testes automatizados de estados e comportamentos relevantes, lint e formatação. Vitest é uma proposta; as ferramentas complementares ainda serão selecionadas. A política inicial de versões está aprovada e documentada no ambiente de desenvolvimento; outras combinações exigem testes. Scripts de tipos, build, Storybook e contraste estão configurados e foram executados conforme o [ambiente de desenvolvimento](development.md). Testes de componentes e ferramentas de lint/formatação ainda não estão configurados. Diretrizes do projeto não equivalem a funcionalidades implementadas ou tecnicamente validadas.
+Prever verificação TypeScript, testes automatizados de estados e comportamentos relevantes, lint e formatação. Vitest e ferramentas complementares estão configurados conforme [qualidade](quality.md). A política inicial de versões está aprovada e documentada no ambiente de desenvolvimento; outras combinações exigem testes. Scripts de tipos, build, Storybook e contraste estão configurados e foram executados conforme o [ambiente de desenvolvimento](development.md). Testes de componentes estão configurados; lint/formatação dedicados não estão configurados. Diretrizes do projeto não equivalem a funcionalidades implementadas ou tecnicamente validadas.

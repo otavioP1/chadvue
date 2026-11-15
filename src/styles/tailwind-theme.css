@@ -1,0 +1,37 @@
+@theme inline {
+  --color-canvas: var(--chadvue-color-canvas);
+  --color-surface: var(--chadvue-color-surface);
+  --color-text: var(--chadvue-color-text);
+  --color-text-muted: var(--chadvue-color-text-muted);
+  --color-border: var(--chadvue-color-border);
+  --color-border-strong: var(--chadvue-color-border-strong);
+  --color-primary: var(--chadvue-color-primary);
+  --color-primary-hover: var(--chadvue-color-primary-hover);
+  --color-primary-active: var(--chadvue-color-primary-active);
+  --color-on-primary: var(--chadvue-color-on-primary);
+  --color-focus: var(--chadvue-color-focus);
+  --color-focus-ring: var(--chadvue-color-focus-ring);
+  --color-danger: var(--chadvue-color-danger);
+  --color-danger-hover: var(--chadvue-color-danger-hover);
+  --color-danger-active: var(--chadvue-color-danger-active);
+  --color-success: var(--chadvue-color-success);
+  --color-warning: var(--chadvue-color-warning);
+  --color-info: var(--chadvue-color-info);
+  --color-disabled: var(--chadvue-color-disabled-surface);
+  --color-disabled-text: var(--chadvue-color-disabled-text);
+  --color-secondary: var(--chadvue-color-secondary-surface);
+  --color-secondary-hover: var(--chadvue-color-secondary-hover);
+  --color-secondary-active: var(--chadvue-color-secondary-active);
+  --font-ui: var(--chadvue-font-family);
+  --spacing-control: var(--chadvue-size-control);
+  --radius-control: var(--chadvue-radius-sm);
+  --radius-dialog: var(--chadvue-radius-lg);
+  --shadow-dialog: var(--chadvue-shadow-dialog);
+  --duration-fast: 120ms;
+  --animate-dialog-fade: chadvue-dialog-fade 140ms ease-out;
+
+  @keyframes chadvue-dialog-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}

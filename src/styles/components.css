@@ -1,0 +1,8 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme) prefix(tw);
+@import "tailwindcss/utilities.css" layer(utilities) prefix(tw) source(none);
+@import './tokens/colors.css';
+@import './tailwind-theme.css';
+
+@source "../components";
+@source inline("tw:size-3.5 tw:animate-spin motion-reduce:tw:animate-none");
